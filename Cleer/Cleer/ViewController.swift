@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  Cleer
+//  Ar_attempt
 //
-//  Created by Zachary on 4/14/20.
-//  Copyright © 2020 zachary. All rights reserved.
+//  Created by Enquirer on 4/13/20.
+//  Copyright © 2020 Enquirer. All rights reserved.
 //
 
 import UIKit
@@ -26,13 +26,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a new scene
         let scene = SCNScene()
         
-        let sphere = SCNSphere(radius: 0.3)
+        let opacity: CGFloat = 0.5
+        
+        let sphere = SCNSphere(radius: 0.1)
         
         let sphereNode = SCNNode(geometry: sphere)
         
-        sphereNode.position = SCNVector3(0, 0, -0.3)
+        
+        sphereNode.position = SCNVector3(0, 0, -0.5)
+        sphereNode.opacity = opacity
         
         scene.rootNode.addChildNode(sphereNode)
+        
+        
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -55,29 +61,5 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
 
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
+
 }
