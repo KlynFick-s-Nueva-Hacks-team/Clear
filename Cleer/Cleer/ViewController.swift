@@ -24,9 +24,9 @@ class ViewController: UIViewController, ARSCNViewDelegate,  ARSessionDelegate{
     let characterOffset: SIMD3<Float> = [-1.0, 0, 0] // Offset the character by one meter to the left
     let characterAnchor = AnchorEntity()
     
-    func session(_ session: ARSession, didAdd anchors: [ARAnchor]){
-        print("Skeleton recieved")
-    }
+//    func session(_ session: ARSession, didAdd anchors: [ARAnchor]){
+//        print("Skeleton recieved")
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
