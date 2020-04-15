@@ -39,14 +39,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
         
         
-        let opacity: CGFloat = 0.7
+//        let opacity: CGFloat = 0.7
         
         let material = SCNMaterial()
         
 
         
 //        material.diffuse.contents = UIImage(named: "grimyMetal.png")
-        material.diffuse.contents = UIImage(named: "grimyMetal.png")
+        material.diffuse.contents = UIImage(named: "spruceWood.png")
 
 //        material.diffuse.contents = UIColor.red
         
@@ -56,20 +56,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
       
         let torusNode = SCNNode(geometry: torus)
-        let sphereNode = SCNNode(geometry: sphere)
+        //let sphereNode = SCNNode(geometry: sphere)
         let boxNode = SCNNode(geometry: box)
        
       
         
         torusNode.position = SCNVector3(0, 0, 0)
-        sphereNode.position = SCNVector3(0, 0, -0.5)
+        //sphereNode.position = SCNVector3(0, 0, -0.5)
         boxNode.position = SCNVector3(0,0,-0.5)
         
 //        sphereNode.opacity = opacity
 //        torusNode.opacity = opacity
         
         
-        scene.rootNode.addChildNode(sphereNode)
+        //scene.rootNode.addChildNode(sphereNode)
         scene.rootNode.addChildNode(torusNode)
 //        scene.rootNode.addChildNode(boxNode)
         
