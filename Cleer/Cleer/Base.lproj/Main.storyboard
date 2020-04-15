@@ -55,6 +55,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGB-Rb-m9I">
+                                <rect key="frame" x="0.0" y="685" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arView>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                             </arscnView>
@@ -71,6 +75,7 @@
                     <tabBarItem key="tabBarItem" title="Stay Cleer" image="escape" catalog="system" id="bx4-Jq-Rdq"/>
                     <navigationItem key="navigationItem" id="DkO-d8-hRJ"/>
                     <connections>
+                        <outlet property="arView" destination="GGB-Rb-m9I" id="hdK-EG-vMM"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
