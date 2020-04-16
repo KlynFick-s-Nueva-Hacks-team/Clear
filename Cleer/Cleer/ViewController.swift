@@ -27,9 +27,9 @@ class ViewController: UIViewController, ARSCNViewDelegate,  ARSessionDelegate{
     let characterAnchor = AnchorEntity()
     let anotherAnchor = AnchorEntity()
     
-    func session(_ session: ARSession, didAdd anchors: [ARAnchor]){
-        print("Skeleton recieved")
-    }
+//    func session(_ session: ARSession, didAdd anchors: [ARAnchor]){
+//        print("Skeleton recieved")
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
