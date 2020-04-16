@@ -75,7 +75,7 @@
                     <tabBarItem key="tabBarItem" title="Stay Clear" image="escape" catalog="system" id="bx4-Jq-Rdq"/>
                     <navigationItem key="navigationItem" id="DkO-d8-hRJ"/>
                     <connections>
-                        <outlet property="arView" destination="GGB-Rb-m9I" id="hdK-EG-vMM"/>
+                        <outlet property="arView" destination="GGB-Rb-m9I" id="4tb-wb-xyp"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
