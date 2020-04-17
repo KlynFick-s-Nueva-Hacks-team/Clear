@@ -27,6 +27,7 @@ class ViewController: UIViewController,  ARSessionDelegate {
     let characterAnchor = AnchorEntity()
     let anotherAnchor = AnchorEntity()
     let bodyPosition: SIMD3<Float> = [0, 0, 0]
+    var frameCount = 0
     
 //    func session(_ session: ARSession, didAdd anchors: [ARAnchor]){
 //        print("Skeleton recieved")
@@ -123,25 +124,30 @@ class ViewController: UIViewController,  ARSessionDelegate {
     }
     
     func session(_ session: ARSession, didUpdate frame: ARFrame){
-        let transform = frame.camera.transform
-        var Distance: Float = 0
-        var halfwayPoint: SIMD3<Float> = [0, 0, 0]
-        for i in (0..<3) {
-            Distance += Float((pow(Double((Double(bodyPosition[i])-Double(transform[3][i]))),Double(2))))
-            halfwayPoint[i] = transform[3][i]+(bodyPosition[i]-transform[3][i])
-        }
-        Distance = Float(sqrt(Distance))
-        
-        let box = MeshResource.generateBox(width: 0.03, height: 0.03, depth: Distance) // size in metres
+        if (frameCount % 5 == 0){
+            let transform = frame.camera.transform
+            var Distance: Float = 0
+            var halfwayPoint: SIMD3<Float> = [0, 0, 0]
+            for i in (0..<3) {
+                Distance += Float((pow(Double((Double(bodyPosition[i])-Double(transform[3][i]))),Double(2))))
+                halfwayPoint[i] = transform[3][i]+(bodyPosition[i]-transform[3][i])
+            }
+            Distance = Float(sqrt(Distance))
+            
+            let box = MeshResource.generateBox(width: 0.03, height: 0.01, depth: Distance) // size in metres
 
-        //let plane = MeshResource.generatePlane(width: 0.03, depth: characterAnchor.position.z )
-        let material = SimpleMaterial(color: .green, isMetallic: false)
-        let entity = ModelEntity(mesh: box, materials: [material])
-        //let entity2 = ModelEntity(mesh: plane, materials: [material])
-        
-        anotherAnchor.addChild(entity)
-        anotherAnchor.setPosition(halfwayPoint, relativeTo: initialPosition)
+            //let plane = MeshResource.generatePlane(width: 0.03, depth: characterAnchor.position.z )
+            let material = SimpleMaterial(color: .green, isMetallic: false)
+            let entity = ModelEntity(mesh: box, materials: [material])
+            //let entity2 = ModelEntity(mesh: plane, materials: [material])
+            for child in anotherAnchor.children {
+                anotherAnchor.removeChild(child)
+            }
+            anotherAnchor.addChild(entity)
+            anotherAnchor.setPosition(halfwayPoint, relativeTo: initialPosition)
+        }
         //            anotherAnchor.addChild(entity2)
+        frameCount += 1
     }
     /*
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]){
