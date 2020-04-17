@@ -22,6 +22,9 @@ class MapVC: UIViewController
     private let regionInMeters: Double = 1000
     private let uid: String = UUID().uuidString
     private let reachability = SCNetworkReachabilityCreateWithName(nil, "google.com")
+    private var latitude: Double = 0
+    private var longitude: Double = 0
+    private var locationHasBeenUpdatedOnce = false
     
     override func viewDidLoad()
     {
@@ -31,9 +34,13 @@ class MapVC: UIViewController
     }
     @objc func updateCounting()
     {
+        if (!locationHasBeenUpdatedOnce)
+        {
+            return
+        }
         checkReachable()
-        let db = Firestore.firestore()
-        /*db.collection("Locations")
+        /*let db = Firestore.firestore()
+        db.collection("Locations")
             .getDocuments() { (querySnapshot, err) in
                 if let err = err
                 {
@@ -43,13 +50,15 @@ class MapVC: UIViewController
                 }
                 else
                 {
+                    var locations = [[String:Any]]()
                     for document in querySnapshot!.documents
                     {
-                        let longitude = document.data()["Longitude"] as! [Int]
-                        let latitude = document.data()["Latitude"] as! [Int]
-                        let probabilities = document.data()["Probabilities"] as! [Int]
+                        let longitude = document.data()["Longitude"] as! [Double]
+                        let latitude = document.data()["Latitude"] as! [Double]
                         let userID = document.data()["UserID"] as! String
+                        locations.append(["title": userID, "latitude": latitude, "longitude": longitude])
                     }
+                    self.plotLocations(locations: locations)
                 }
         }*/
     }
@@ -144,7 +153,13 @@ extension MapVC: CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         guard let location = locations.last else { return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        longitude = location.coordinate.longitude
+        latitude = location.coordinate.latitude
+        if (!locationHasBeenUpdatedOnce)
+        {
+            locationHasBeenUpdatedOnce = true
+        }
+        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters:
             regionInMeters)
         map.setRegion(region, animated: true)
