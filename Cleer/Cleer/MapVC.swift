@@ -20,26 +20,31 @@ class MapVC: UIViewController
     
     private let locationManager = CLLocationManager()
     private let regionInMeters: Double = 1000
-    private let uid: String = UUID().uuidString
     private let reachability = SCNetworkReachabilityCreateWithName(nil, "google.com")
+    private var uid: String = "undefined"
     private var latitude: Double = 0
     private var longitude: Double = 0
     private var locationHasBeenUpdatedOnce = false
+    private var currentAnnotations = [[String:Any]]()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         checkLocationServices()
-        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounting), userInfo: nil, repeats: true)
+        map.mapType = .mutedStandard
+        map.isZoomEnabled = true
+        map.isScrollEnabled = true
+        map.showsBuildings = true
+        map.isPitchEnabled = true
+        map.showsCompass = true
+        map.showsScale = true
+        _ = Timer.scheduledTimer(timeInterval: 100.0, target: self, selector: #selector(updateLocations), userInfo: nil, repeats: true)
+        updateLocations()
     }
-    @objc func updateCounting()
+    @objc public func updateLocations()
     {
-        if (!locationHasBeenUpdatedOnce)
-        {
-            return
-        }
         checkReachable()
-        /*let db = Firestore.firestore()
+        let db = Firestore.firestore()
         db.collection("Locations")
             .getDocuments() { (querySnapshot, err) in
                 if let err = err
@@ -50,27 +55,74 @@ class MapVC: UIViewController
                 }
                 else
                 {
-                    var locations = [[String:Any]]()
+                    let oldAnnotations = self.currentAnnotations
+                    self.currentAnnotations = []
                     for document in querySnapshot!.documents
                     {
                         let longitude = document.data()["Longitude"] as! [Double]
                         let latitude = document.data()["Latitude"] as! [Double]
-                        let userID = document.data()["UserID"] as! String
-                        locations.append(["title": userID, "latitude": latitude, "longitude": longitude])
+                        let userID = document.documentID
+                        if (userID != self.uid)
+                        {
+                            self.currentAnnotations.append(["title": userID, "latitude": latitude, "longitude": longitude])
+                        }
                     }
-                    self.plotLocations(locations: locations)
-                }
-        }*/
+                    self.plotLocations(locations: self.currentAnnotations, oldLocations: oldAnnotations)
+                    if (!self.locationHasBeenUpdatedOnce)
+                    {
+                        return
+                    }
+                    let data = [
+                      "Longitude": self.longitude,
+                      "Latitude": self.latitude
+                    ] as [String : Any]
+                    if (self.uid == "undefined")
+                    {
+                        let dataReference = Firestore.firestore().collection("Locations").document()
+                        self.uid = dataReference.documentID
+                        dataReference.setData(data, completion: {(err) in
+                          if (err != nil)
+                          {
+                            let alert = UIAlertController(title: "Something Went Wrong", message: "An error occured while uploading your location to the database.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                          }
+                        })
+                    }
+                    else
+                    {
+                        Firestore.firestore().collection("Locations").document(self.uid).updateData(data, completion: {(err) in
+                            if (err != nil)
+                            {
+                                let alert = UIAlertController(title: "Something Went Wrong", message: "An error occured while uploading your location to the database.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        })
+                    }
+               }
+        }
     }
-    private func plotLocations(locations: [[String:Any]])
+    private func plotLocations(locations: [[String:Any]], oldLocations: [[String:Any]])
     {
+        var annotations = [MKPointAnnotation]()
+        for location in oldLocations
+        {
+            let annotation = MKPointAnnotation()
+            annotation.title = location["title"] as? String
+            annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
+            annotations.append(annotation)
+        }
+        map.removeAnnotations(annotations)
+        annotations = [MKPointAnnotation]()
         for location in locations
         {
             let annotation = MKPointAnnotation()
             annotation.title = location["title"] as? String
             annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
-            map.addAnnotation(annotation)
+            annotations.append(annotation)
         }
+        map.addAnnotations(annotations)
     }
     private func setupLocationManager()
     {
@@ -97,7 +149,6 @@ class MapVC: UIViewController
         {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             map.setRegion(region, animated: true)
-            map.isZoomEnabled = true
         }
     }
     private func checkLocationAuthorization()
@@ -153,8 +204,8 @@ extension MapVC: CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         guard let location = locations.last else { return }
-        longitude = location.coordinate.longitude
-        latitude = location.coordinate.latitude
+        self.longitude = location.coordinate.longitude
+        self.latitude = location.coordinate.latitude
         if (!locationHasBeenUpdatedOnce)
         {
             locationHasBeenUpdatedOnce = true
