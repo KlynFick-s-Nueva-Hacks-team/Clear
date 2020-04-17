@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GBZ-TE-5aD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GBZ-TE-5aD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,8 +18,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfR-UE-r5h">
                                 <rect key="frame" x="300" y="80" width="49" height="52"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="XIy-jy-ePo"/>
-                                    <constraint firstAttribute="width" constant="49" id="bPo-zq-LDE"/>
+                                    <constraint firstAttribute="width" constant="49" id="78F-cw-zVw"/>
+                                    <constraint firstAttribute="height" constant="52" id="Gf6-uB-NuY"/>
                                 </constraints>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="arrow.clockwise" catalog="system">
@@ -30,17 +30,19 @@
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="t7T-K9-XPg">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="t7T-K9-XPg" firstAttribute="top" secondItem="1Hc-PW-BCc" secondAttribute="topMargin" constant="-44" id="CVq-g1-pKB"/>
-                            <constraint firstItem="t7T-K9-XPg" firstAttribute="leading" secondItem="ZNA-Xv-gbp" secondAttribute="leading" id="DKo-fS-KNw"/>
-                            <constraint firstItem="nfR-UE-r5h" firstAttribute="leading" secondItem="ZNA-Xv-gbp" secondAttribute="leading" constant="300" id="SKv-EV-HjF"/>
-                            <constraint firstItem="nfR-UE-r5h" firstAttribute="top" secondItem="ZNA-Xv-gbp" secondAttribute="top" constant="37" id="YMi-nc-Qj2"/>
-                            <constraint firstItem="t7T-K9-XPg" firstAttribute="centerX" secondItem="1Hc-PW-BCc" secondAttribute="centerX" id="h3l-bw-Uyj"/>
-                            <constraint firstItem="t7T-K9-XPg" firstAttribute="bottom" secondItem="ZNA-Xv-gbp" secondAttribute="bottom" id="vnc-oj-CJX"/>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="top" secondItem="1Hc-PW-BCc" secondAttribute="topMargin" constant="-44" id="59S-NT-gSu"/>
+                            <constraint firstItem="nfR-UE-r5h" firstAttribute="top" secondItem="ZNA-Xv-gbp" secondAttribute="top" constant="37" id="5hC-Nq-XHo"/>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="leading" secondItem="ZNA-Xv-gbp" secondAttribute="leading" id="B6u-LG-Kvr"/>
+                            <constraint firstItem="nfR-UE-r5h" firstAttribute="leading" secondItem="ZNA-Xv-gbp" secondAttribute="leading" constant="300" id="S63-hg-7aA"/>
+                            <constraint firstItem="ZNA-Xv-gbp" firstAttribute="trailing" secondItem="nfR-UE-r5h" secondAttribute="trailing" constant="65" id="Wjx-KY-2pb"/>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="centerX" secondItem="1Hc-PW-BCc" secondAttribute="centerX" id="jpO-qw-cVf"/>
+                            <constraint firstItem="ZNA-Xv-gbp" firstAttribute="bottom" secondItem="nfR-UE-r5h" secondAttribute="bottom" constant="680" id="oOX-6R-3A6"/>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="centerY" secondItem="1Hc-PW-BCc" secondAttribute="centerY" id="rlz-Ss-ulA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZNA-Xv-gbp"/>
                     </view>
@@ -80,12 +82,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGB-Rb-m9I">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGB-Rb-m9I">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GGB-Rb-m9I" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="DVm-ra-1Rb"/>
+                            <constraint firstItem="GGB-Rb-m9I" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="DyD-7s-kUg"/>
+                            <constraint firstItem="GGB-Rb-m9I" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="topMargin" constant="-44" id="QrF-4K-0a2"/>
+                            <constraint firstItem="GGB-Rb-m9I" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="nbz-fM-w3E"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stay Clear" image="escape" catalog="system" id="bx4-Jq-Rdq"/>

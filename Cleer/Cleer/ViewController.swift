@@ -134,7 +134,7 @@ class ViewController: UIViewController,  ARSessionDelegate {
                 halfwayPointArray.append((transform[3][i]+bodyPosition[i])/2)
                 deltaDistanceArray.append(bodyPosition[i]-transform[3][i])
             }
-            var halfwayPoint: SIMD3<Float> = [(halfwayPointArray[0]), (halfwayPointArray[1]), halfwayPointArray[2]] // TODO: Fix bad math w/ atan and crap
+            let halfwayPoint: SIMD3<Float> = [(halfwayPointArray[0]), (halfwayPointArray[1]), halfwayPointArray[2]] // TODO: Fix bad math w/ atan and crap
             Distance = Float(sqrt(Distance))
 //            print(Distance)
 //            print(halfwayPoint)
@@ -149,7 +149,7 @@ class ViewController: UIViewController,  ARSessionDelegate {
             }
 
             let thetaY = atan(deltaDistanceArray[2]/deltaDistanceArray[1])
-            let thetaX = atan(deltaDistanceArray[2]/deltaDistanceArray[0])
+            let thetaX = atan(deltaDistanceArray[1]/deltaDistanceArray[0])
             
             let rotateX = simd_float4x4.init(
                 SIMD4<Float>.init(1, 0, 0, 0),
@@ -168,7 +168,7 @@ class ViewController: UIViewController,  ARSessionDelegate {
             anotherAnchor.addChild(entity)
             anotherAnchor.setPosition(halfwayPoint, relativeTo: initialPosition)
             anotherAnchor.setTransformMatrix(rotateX, relativeTo: initialPosition)
-            //anotherAnchor.setTransformMatrix(rotateY, relativeTo: initialPosition)
+            anotherAnchor.setTransformMatrix(rotateY, relativeTo: initialPosition)
         }
         //            anotherAnchor.addChild(entity2)
         frameCount += 1
