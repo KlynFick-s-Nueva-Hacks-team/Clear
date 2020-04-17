@@ -62,6 +62,7 @@ class MapVC: UIViewController
                         let longitude = document.data()["Longitude"] as! [Double]
                         let latitude = document.data()["Latitude"] as! [Double]
                         let userID = document.documentID
+                        print("longitude: \(longitude), latitude: \(latitude), idL \(userID)")
                         if (userID != self.uid)
                         {
                             self.currentAnnotations.append(["title": userID, "latitude": latitude, "longitude": longitude])
