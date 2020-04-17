@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012D951C24492A1A0007FC27 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D951B24492A1A0007FC27 /* MapVC.swift */; };
-		015CF4A524492D2C005996B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 015CF4A424492D2C005996B1 /* GoogleService-Info.plist */; };
+		015CF4A724494841005996B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 015CF4A624494841005996B1 /* GoogleService-Info.plist */; };
 		696D780D64874BD331289151 /* libPods-Cleer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DAECD70812A5C9A9AF30A3A /* libPods-Cleer.a */; };
 		B60C5C0F244597F8005D4C35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C5C0E244597F8005D4C35 /* AppDelegate.swift */; };
 		B60C5C11244597F8005D4C35 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B60C5C10244597F8005D4C35 /* art.scnassets */; };
@@ -20,7 +20,7 @@
 
 /* Begin PBXFileReference section */
 		012D951B24492A1A0007FC27 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
-		015CF4A424492D2C005996B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		015CF4A624494841005996B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6DAECD70812A5C9A9AF30A3A /* libPods-Cleer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cleer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E3EDC17B60C4BE46EB36E7 /* Pods-Cleer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cleer.release.xcconfig"; path = "Target Support Files/Pods-Cleer/Pods-Cleer.release.xcconfig"; sourceTree = "<group>"; };
 		B60C5C0B244597F8005D4C35 /* Cleer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,8 +93,8 @@
 				B60C5C17244597FE005D4C35 /* Assets.xcassets */,
 				B60C5C19244597FE005D4C35 /* LaunchScreen.storyboard */,
 				B60C5C1C244597FE005D4C35 /* Info.plist */,
-				015CF4A424492D2C005996B1 /* GoogleService-Info.plist */,
 				012D951B24492A1A0007FC27 /* MapVC.swift */,
+				015CF4A624494841005996B1 /* GoogleService-Info.plist */,
 			);
 			path = Cleer;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 			files = (
 				B60C5C11244597F8005D4C35 /* art.scnassets in Resources */,
 				B60C5C1B244597FE005D4C35 /* LaunchScreen.storyboard in Resources */,
-				015CF4A524492D2C005996B1 /* GoogleService-Info.plist in Resources */,
+				015CF4A724494841005996B1 /* GoogleService-Info.plist in Resources */,
 				B60C5C18244597FE005D4C35 /* Assets.xcassets in Resources */,
 				B60C5C16244597F8005D4C35 /* Main.storyboard in Resources */,
 			);

@@ -15,17 +15,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="t7T-K9-XPg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfR-UE-r5h">
+                                <rect key="frame" x="300" y="80" width="49" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="XIy-jy-ePo"/>
+                                    <constraint firstAttribute="width" constant="49" id="bPo-zq-LDE"/>
+                                </constraints>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" backgroundImage="arrow.clockwise" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshButton:" destination="pXW-Dj-CxQ" eventType="touchUpInside" id="ems-MH-o4B"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="t7T-K9-XPg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="top" secondItem="1Hc-PW-BCc" secondAttribute="topMargin" constant="-44" id="CVq-g1-pKB"/>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="leading" secondItem="ZNA-Xv-gbp" secondAttribute="leading" id="DKo-fS-KNw"/>
+                            <constraint firstItem="nfR-UE-r5h" firstAttribute="leading" secondItem="ZNA-Xv-gbp" secondAttribute="leading" constant="300" id="SKv-EV-HjF"/>
+                            <constraint firstItem="nfR-UE-r5h" firstAttribute="top" secondItem="ZNA-Xv-gbp" secondAttribute="top" constant="37" id="YMi-nc-Qj2"/>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="centerX" secondItem="1Hc-PW-BCc" secondAttribute="centerX" id="h3l-bw-Uyj"/>
+                            <constraint firstItem="t7T-K9-XPg" firstAttribute="bottom" secondItem="ZNA-Xv-gbp" secondAttribute="bottom" id="vnc-oj-CJX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZNA-Xv-gbp"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stear Clear" image="map" catalog="system" selectedImage="map" id="wnO-KU-e0C"/>
                     <connections>
                         <outlet property="map" destination="t7T-K9-XPg" id="Tdv-Sc-Rbn"/>
+                        <outlet property="refresh" destination="nfR-UE-r5h" id="4IW-dF-h23"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="05I-Pi-eft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -88,6 +110,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
         <image name="escape" catalog="system" width="64" height="60"/>
         <image name="map" catalog="system" width="64" height="56"/>
     </resources>
