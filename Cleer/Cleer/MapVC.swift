@@ -5,7 +5,7 @@
 //  Created by Nicholas Assaderaghi on 4/16/20.
 //  Copyright © 2020 zachary. All rights reserved.
 //
-
+/*
 import Foundation
 import UIKit
 import Firebase
@@ -220,3 +220,4 @@ extension MapVC: CLLocationManagerDelegate
         checkLocationAuthorization()
     }
 }
+*/

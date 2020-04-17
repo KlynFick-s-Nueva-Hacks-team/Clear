@@ -3,26 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		012D951C24492A1A0007FC27 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D951B24492A1A0007FC27 /* MapVC.swift */; };
-		015CF4A524492D2C005996B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 015CF4A424492D2C005996B1 /* GoogleService-Info.plist */; };
-		696D780D64874BD331289151 /* libPods-Cleer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DAECD70812A5C9A9AF30A3A /* libPods-Cleer.a */; };
 		B60C5C0F244597F8005D4C35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C5C0E244597F8005D4C35 /* AppDelegate.swift */; };
 		B60C5C11244597F8005D4C35 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B60C5C10244597F8005D4C35 /* art.scnassets */; };
 		B60C5C13244597F8005D4C35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C5C12244597F8005D4C35 /* ViewController.swift */; };
 		B60C5C16244597F8005D4C35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B60C5C14244597F8005D4C35 /* Main.storyboard */; };
 		B60C5C18244597FE005D4C35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B60C5C17244597FE005D4C35 /* Assets.xcassets */; };
 		B60C5C1B244597FE005D4C35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B60C5C19244597FE005D4C35 /* LaunchScreen.storyboard */; };
+		B6A6570824496D2E0077F058 /* character in Resources */ = {isa = PBXBuildFile; fileRef = B6A6570724496D2E0077F058 /* character */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		012D951B24492A1A0007FC27 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
-		015CF4A424492D2C005996B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6DAECD70812A5C9A9AF30A3A /* libPods-Cleer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cleer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		88E3EDC17B60C4BE46EB36E7 /* Pods-Cleer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cleer.release.xcconfig"; path = "Target Support Files/Pods-Cleer/Pods-Cleer.release.xcconfig"; sourceTree = "<group>"; };
 		B60C5C0B244597F8005D4C35 /* Cleer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60C5C0E244597F8005D4C35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B60C5C10244597F8005D4C35 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -31,8 +27,8 @@
 		B60C5C17244597FE005D4C35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B60C5C1A244597FE005D4C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B60C5C1C244597FE005D4C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6B6F2322446E23C00CB7D41 /* robot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = robot.usdz; sourceTree = "<group>"; };
-		F2DBE829571DC94A24322B6F /* Pods-Cleer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cleer.debug.xcconfig"; path = "Target Support Files/Pods-Cleer/Pods-Cleer.debug.xcconfig"; sourceTree = "<group>"; };
+		B6A656F9244949320077F058 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/zachary/projects/Clear/Cleer/Cleer/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
+		B6A6570724496D2E0077F058 /* character */ = {isa = PBXFileReference; lastKnownFileType = folder; name = character; path = "../../../../Downloads/CapturingBodyMotionIn3D 2/BodyDetection/character"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				696D780D64874BD331289151 /* libPods-Cleer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,18 +45,8 @@
 		839816B0CF13051EA1DE292F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F2DBE829571DC94A24322B6F /* Pods-Cleer.debug.xcconfig */,
-				88E3EDC17B60C4BE46EB36E7 /* Pods-Cleer.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		8FF6224FB37AFE48A1CB048A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6DAECD70812A5C9A9AF30A3A /* libPods-Cleer.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B60C5C02244597F8005D4C35 = {
@@ -70,7 +55,6 @@
 				B60C5C0D244597F8005D4C35 /* Cleer */,
 				B60C5C0C244597F8005D4C35 /* Products */,
 				839816B0CF13051EA1DE292F /* Pods */,
-				8FF6224FB37AFE48A1CB048A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,25 +70,17 @@
 			isa = PBXGroup;
 			children = (
 				B60C5C0E244597F8005D4C35 /* AppDelegate.swift */,
-				B6B6F2312446E23C00CB7D41 /* character */,
+				B6A6570724496D2E0077F058 /* character */,
 				B60C5C10244597F8005D4C35 /* art.scnassets */,
 				B60C5C12244597F8005D4C35 /* ViewController.swift */,
 				B60C5C14244597F8005D4C35 /* Main.storyboard */,
 				B60C5C17244597FE005D4C35 /* Assets.xcassets */,
 				B60C5C19244597FE005D4C35 /* LaunchScreen.storyboard */,
+				B6A656F9244949320077F058 /* GoogleService-Info.plist */,
 				B60C5C1C244597FE005D4C35 /* Info.plist */,
-				015CF4A424492D2C005996B1 /* GoogleService-Info.plist */,
 				012D951B24492A1A0007FC27 /* MapVC.swift */,
 			);
 			path = Cleer;
-			sourceTree = "<group>";
-		};
-		B6B6F2312446E23C00CB7D41 /* character */ = {
-			isa = PBXGroup;
-			children = (
-				B6B6F2322446E23C00CB7D41 /* robot.usdz */,
-			);
-			path = character;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,11 +90,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B60C5C1F244597FE005D4C35 /* Build configuration list for PBXNativeTarget "Cleer" */;
 			buildPhases = (
-				872431588612200B5D59877C /* [CP] Check Pods Manifest.lock */,
 				B60C5C07244597F8005D4C35 /* Sources */,
 				B60C5C08244597F8005D4C35 /* Frameworks */,
 				B60C5C09244597F8005D4C35 /* Resources */,
-				5EC4E9234B53CCAB1F4B5E9E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,57 +141,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6A6570824496D2E0077F058 /* character in Resources */,
 				B60C5C11244597F8005D4C35 /* art.scnassets in Resources */,
 				B60C5C1B244597FE005D4C35 /* LaunchScreen.storyboard in Resources */,
-				015CF4A524492D2C005996B1 /* GoogleService-Info.plist in Resources */,
 				B60C5C18244597FE005D4C35 /* Assets.xcassets in Resources */,
 				B60C5C16244597F8005D4C35 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5EC4E9234B53CCAB1F4B5E9E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cleer/Pods-Cleer-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cleer/Pods-Cleer-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cleer/Pods-Cleer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		872431588612200B5D59877C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cleer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B60C5C07244597F8005D4C35 /* Sources */ = {
@@ -368,17 +300,16 @@
 		};
 		B60C5C20244597FE005D4C35 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2DBE829571DC94A24322B6F /* Pods-Cleer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3GKF7STU5Y;
+				DEVELOPMENT_TEAM = Q46J9P9CJ3;
 				INFOPLIST_FILE = Cleer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huxley.cleer;
+				PRODUCT_BUNDLE_IDENTIFIER = zachary.clear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -387,17 +318,16 @@
 		};
 		B60C5C21244597FE005D4C35 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88E3EDC17B60C4BE46EB36E7 /* Pods-Cleer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3GKF7STU5Y;
+				DEVELOPMENT_TEAM = Q46J9P9CJ3;
 				INFOPLIST_FILE = Cleer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huxley.cleer;
+				PRODUCT_BUNDLE_IDENTIFIER = zachary.clear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
