@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Your camera is needed for the AR to work.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is required to use the Stear Clear feature.</string>
 	<key>UILaunchStoryboardName</key>

@@ -17,6 +17,7 @@ import SystemConfiguration
 class MapVC: UIViewController
 {
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var refresh: UIButton!
     
     private let locationManager = CLLocationManager()
     private let regionInMeters: Double = 1000
@@ -26,6 +27,7 @@ class MapVC: UIViewController
     private var longitude: Double = 0
     private var locationHasBeenUpdatedOnce = false
     private var currentAnnotations = [[String:Any]]()
+    private var userLocationDeleted = false
     
     override func viewDidLoad()
     {
@@ -38,8 +40,26 @@ class MapVC: UIViewController
         map.isPitchEnabled = true
         map.showsCompass = true
         map.showsScale = true
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.NSExtensionHostDidEnterBackground, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.NSExtensionHostDidEnterBackground, object: nil)
         _ = Timer.scheduledTimer(timeInterval: 100.0, target: self, selector: #selector(updateLocations), userInfo: nil, repeats: true)
+        self.view.bringSubviewToFront(refresh)
         updateLocations()
+    }
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        Firestore.firestore().collection("Locations").document(self.uid).delete() { err in
+            if let err = err
+            {
+                print("Error removing document: \(err)")
+            }
+            else
+            {
+                print("User location successfully removed!")
+                self.userLocationDeleted = true
+            }
+        }
     }
     @objc public func updateLocations()
     {
@@ -59,9 +79,10 @@ class MapVC: UIViewController
                     self.currentAnnotations = []
                     for document in querySnapshot!.documents
                     {
-                        let longitude = document.data()["Longitude"] as! [Double]
-                        let latitude = document.data()["Latitude"] as! [Double]
+                        let longitude = document.data()["Longitude"] as! Double
+                        let latitude = document.data()["Latitude"] as! Double
                         let userID = document.documentID
+                        print("longitude: \(longitude), latitude: \(latitude), id: \(userID)")
                         if (userID != self.uid)
                         {
                             self.currentAnnotations.append(["title": userID, "latitude": latitude, "longitude": longitude])
@@ -109,19 +130,21 @@ class MapVC: UIViewController
         for location in oldLocations
         {
             let annotation = MKPointAnnotation()
-            annotation.title = location["title"] as? String
+            annotation.title = ("user #\(location["title"] as! String)")
             annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
             annotations.append(annotation)
         }
         map.removeAnnotations(annotations)
+        print("Removed annotations: \(annotations)")
         annotations = [MKPointAnnotation]()
         for location in locations
         {
             let annotation = MKPointAnnotation()
-            annotation.title = location["title"] as? String
+            annotation.title = ("User #\(location["title"] as! String)")
             annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
             annotations.append(annotation)
         }
+        print("Added annotations: \(annotations)")
         map.addAnnotations(annotations)
     }
     private func setupLocationManager()
@@ -151,6 +174,7 @@ class MapVC: UIViewController
             map.setRegion(region, animated: true)
         }
     }
+    
     private func checkLocationAuthorization()
     {
         switch CLLocationManager.authorizationStatus()
@@ -197,10 +221,30 @@ class MapVC: UIViewController
         let canConnectWithoutUserInteraction = canConnectAutomatically && !flags.contains(.interventionRequired)
         return isReachable && (!needsConnection || canConnectWithoutUserInteraction)
     }
+    @objc func appMovedToBackground()
+    {
+        print("App moved to background!")
+        Firestore.firestore().collection("Locations").document(self.uid).delete() { err in
+            if let err = err
+            {
+                print("Error removing document: \(err)")
+            }
+            else
+            {
+                print("User location successfully removed!")
+                self.userLocationDeleted = true
+            }
+        }
+    }
+    @IBAction func refreshButton(_ sender: Any)
+    {
+        updateLocations()
+    }
+    
 }
 extension MapVC: CLLocationManagerDelegate
 {
-    // MARK: - when user's location changes. I'll probs use this to query to firebase
+    // MARK: - when user's location changes.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         guard let location = locations.last else { return }
@@ -210,14 +254,36 @@ extension MapVC: CLLocationManagerDelegate
         {
             locationHasBeenUpdatedOnce = true
         }
-        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        /*let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters:
             regionInMeters)
-        map.setRegion(region, animated: true)
+        map.setRegion(region, animated: true)*/
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
     {
         checkLocationAuthorization()
     }
 }
-*/
+extension MapVC: MKMapViewDelegate
+{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        annotationView.isEnabled = true
+        annotationView.canShowCallout = true
+        let btn = UIButton(type: .detailDisclosure)
+        annotationView.rightCalloutAccessoryView = btn
+        return annotationView
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
+    {
+        let region = MKCoordinateRegion.init(center: view.annotation!.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        map.setRegion(region, animated: true)
+    }
+    func mapView(_ mapView: MKMapView,
+                 didSelect view: MKAnnotationView)
+    {
+        let region = MKCoordinateRegion.init(center: view.annotation!.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        map.setRegion(region, animated: true)
+    }
+}
