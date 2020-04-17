@@ -24,9 +24,9 @@ class ViewController: UIViewController,  ARSessionDelegate {
     var character: BodyTrackedEntity?
     var initialPosition = AnchorEntity()
     let characterOffset: SIMD3<Float> = [0, 0, 0]
-    let characterAnchor = AnchorEntity()
-    let anotherAnchor = AnchorEntity()
-    let bodyPosition: SIMD3<Float> = [0, 0, 0]
+    var characterAnchor = AnchorEntity()
+    var anotherAnchor = AnchorEntity()
+    var bodyPosition: SIMD3<Float> = [0, 0, 0]
     var frameCount = 0
     
 //    func session(_ session: ARSession, didAdd anchors: [ARAnchor]){
@@ -85,7 +85,7 @@ class ViewController: UIViewController,  ARSessionDelegate {
             guard let bodyAnchor = anchor as? ARBodyAnchor else { continue }
             
             // Update the position of the character anchor's position.
-            let bodyPosition = simd_make_float3(bodyAnchor.transform.columns.3)
+            self.bodyPosition = simd_make_float3(bodyAnchor.transform.columns.3)
             characterAnchor.position = bodyPosition + characterOffset
             /*
             let transform = frame.camera.transform
@@ -127,13 +127,17 @@ class ViewController: UIViewController,  ARSessionDelegate {
         if (frameCount % 5 == 0){
             let transform = frame.camera.transform
             var Distance: Float = 0
-            var halfwayPoint: SIMD3<Float> = [0, 0, 0]
+            var deltaDistanceArray = [Float]()
+            var halfwayPointArray = [Float]()
             for i in (0..<3) {
-                Distance += Float((pow(Double((Double(bodyPosition[i])-Double(transform[3][i]))),Double(2))))
-                halfwayPoint[i] = transform[3][i]+(bodyPosition[i]-transform[3][i])
+                Distance += Float((pow(Double((Double(bodyPosition[i])-Double(transform[3][i]))), Double(2))))
+                halfwayPointArray.append((transform[3][i]+bodyPosition[i])/2)
+                deltaDistanceArray.append(bodyPosition[i]-transform[3][i])
             }
+            var halfwayPoint: SIMD3<Float> = [(halfwayPointArray[0]), (halfwayPointArray[1]), halfwayPointArray[2]] // TODO: Fix bad math w/ atan and crap
             Distance = Float(sqrt(Distance))
-            
+//            print(Distance)
+//            print(halfwayPoint)
             let box = MeshResource.generateBox(width: 0.03, height: 0.01, depth: Distance) // size in metres
 
             //let plane = MeshResource.generatePlane(width: 0.03, depth: characterAnchor.position.z )
@@ -143,8 +147,28 @@ class ViewController: UIViewController,  ARSessionDelegate {
             for child in anotherAnchor.children {
                 anotherAnchor.removeChild(child)
             }
+
+            let thetaY = atan(deltaDistanceArray[2]/deltaDistanceArray[1])
+            let thetaX = atan(deltaDistanceArray[2]/deltaDistanceArray[0])
+            
+            let rotateX = simd_float4x4.init(
+                SIMD4<Float>.init(1, 0, 0, 0),
+                SIMD4<Float>.init(0, cos(thetaX), -sin(thetaX), 0),
+                SIMD4<Float>.init(0, sin(thetaX), cos(thetaX), 0),
+                SIMD4<Float>.init(0, 0, 0, 1))
+            
+            let rotateY = simd_float4x4.init(
+                SIMD4<Float>.init(cos(thetaY), 0, sin(thetaY), 0),
+                SIMD4<Float>.init(0, 1, 0, 0),
+                SIMD4<Float>.init(-sin(thetaY), 0, cos(thetaY), 0),
+                SIMD4<Float>.init(0, 0, 0, 1))
+            
+            print(thetaX, thetaY)
+            //print(thetaY)
             anotherAnchor.addChild(entity)
             anotherAnchor.setPosition(halfwayPoint, relativeTo: initialPosition)
+            anotherAnchor.setTransformMatrix(rotateX, relativeTo: initialPosition)
+            //anotherAnchor.setTransformMatrix(rotateY, relativeTo: initialPosition)
         }
         //            anotherAnchor.addChild(entity2)
         frameCount += 1
