@@ -130,7 +130,7 @@ class MapVC: UIViewController
         for location in oldLocations
         {
             let annotation = MKPointAnnotation()
-            annotation.title = ("user #\(location["title"] as! String)")
+            annotation.title = ("AVOID")
             annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
             annotations.append(annotation)
         }
@@ -140,7 +140,7 @@ class MapVC: UIViewController
         for location in locations
         {
             let annotation = MKPointAnnotation()
-            annotation.title = ("User #\(location["title"] as! String)")
+            annotation.title = ("AVOID")
             annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
             annotations.append(annotation)
         }
