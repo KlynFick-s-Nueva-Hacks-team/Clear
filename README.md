@@ -1,5 +1,6 @@
-# Clear
-stay 6 feet away!
+# CleAR
+An iPhone app that help people social distance with AR.
+
 ## INSTALL XCODE
-once xcode is installed run
+Once xcode is installed run
 ```xcode-install buildtools```
