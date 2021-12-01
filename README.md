@@ -1,5 +1,5 @@
 # CleAR
-An iPhone app that help people social distance with AR.
+An iPhone app that helps people social distance with AR.
 
 ## INSTALL XCODE
 Once xcode is installed run
